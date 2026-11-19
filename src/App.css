@@ -15,6 +15,19 @@
 .lista h2 { font-size: 1.1rem; }
 .lista ul { list-style: none; padding: 0; margin: 12px 0 0; }
 .tarjeta { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; margin-bottom: 8px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; }
+.tarjeta[role='button'] { cursor: pointer; }
+.tarjeta[role='button']:focus-visible { outline: 3px solid #0ea5e9; outline-offset: 2px; }
+.tarjeta.seleccionada { border-color: #0ea5e9; background: #f0f9ff; }
+.reserva { max-width: 520px; margin: 20px auto; padding: 20px; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px #00000014; }
+.reserva h2 { font-size: 1.15rem; }
+.reserva .campo { gap: 6px; }
+.reserva input:not([type='radio']) { padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font: inherit; }
+.contador { display: flex; align-items: center; gap: 12px; margin: 16px 0; }
+.reserva fieldset { display: flex; flex-wrap: wrap; gap: 12px; border: 1px solid #cbd5e1; border-radius: 8px; }
+.total { font-weight: 700; }
+.reserva button { padding: 10px 14px; font-size: 0.95rem; border: 1px solid #0284c7; border-radius: 8px; background: #0ea5e9; color: #ffffff; cursor: pointer; }
+.reserva button:disabled { opacity: 0.45; cursor: not-allowed; }
+.mensaje-confirmacion { max-width: 520px; margin: 24px auto; padding: 12px; text-align: center; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 8px; }
 .tarjeta strong { color: #0f766e; }
 .mensaje { max-width: 520px; margin: 24px auto; padding: 12px; text-align: center; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; }
 .footer { text-align: center; color: #64748b; padding: 16px; }
