@@ -6,6 +6,16 @@ import SelectorRuta from './components/SelectorRuta.jsx'
 import ListaVuelos from './components/ListaVuelos.jsx'
 import Footer from './components/Footer.jsx'
 import FormularioReserva from './components/FormularioReserva.jsx'
+import MisReservas from './components/MisReservas.jsx'
+
+function cargarReservas() {
+  try {
+    const guardadas = localStorage.getItem('aerocol-reservas')
+    return guardadas ? JSON.parse(guardadas) : []
+  } catch {
+    return []
+  }
+}
 
 function nombreCiudad(codigo) {
   return CIUDADES.find((c) => c.codigo === codigo)?.nombre ?? codigo
@@ -16,6 +26,7 @@ function App() {
   const [destino, setDestino] = useState('')
   const [seleccionado, setSeleccionado] = useState(null)
   const [mensajeReserva, setMensajeReserva] = useState('')
+  const [reservas, setReservas] = useState(cargarReservas)
   const ciudadesDestino = CIUDADES.filter((c) => c.codigo !== origen)
   const vuelosEncontrados =
     origen !== '' && destino !== ''
@@ -48,8 +59,26 @@ function App() {
   }
 
   const manejarReserva = ({ nombre, pasajeros, clase, total, vuelo }) => {
+    const nueva = {
+      id: crypto.randomUUID(),
+      nombre,
+      vueloId: vuelo.id,
+      pasajeros,
+      clase,
+      total,
+      fecha: new Date().toLocaleDateString('es-CO'),
+    }
+    const nuevasReservas = [...reservas, nueva]
+    setReservas(nuevasReservas)
+    localStorage.setItem('aerocol-reservas', JSON.stringify(nuevasReservas))
     setMensajeReserva(`¡Reserva realizada para ${nombre}! ${pasajeros} pasajero${pasajeros === 1 ? '' : 's'}, clase ${clase}, vuelo ${vuelo.id}. Total: $ ${total.toLocaleString('es-CO')}.`)
     setSeleccionado(null)
+  }
+
+  const manejarEliminarReserva = (idEliminar) => {
+    const nuevasReservas = reservas.filter((reserva) => reserva.id !== idEliminar)
+    setReservas(nuevasReservas)
+    localStorage.setItem('aerocol-reservas', JSON.stringify(nuevasReservas))
   }
 
   return (
@@ -84,6 +113,7 @@ function App() {
       )}
       {seleccionado && <FormularioReserva key={seleccionado.id} vuelo={seleccionado} onReservar={manejarReserva} />}
       {mensajeReserva && <p className="mensaje-confirmacion" role="status">{mensajeReserva}</p>}
+      <MisReservas reservas={reservas} onEliminar={manejarEliminarReserva} />
       <Footer anio={2026} />
     </main>
   )

@@ -28,6 +28,13 @@
 .reserva button { padding: 10px 14px; font-size: 0.95rem; border: 1px solid #0284c7; border-radius: 8px; background: #0ea5e9; color: #ffffff; cursor: pointer; }
 .reserva button:disabled { opacity: 0.45; cursor: not-allowed; }
 .mensaje-confirmacion { max-width: 520px; margin: 24px auto; padding: 12px; text-align: center; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 8px; }
+.mis-reservas { max-width: 520px; margin: 24px auto; padding: 20px; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px #00000014; }
+.mis-reservas h2 { margin-top: 0; font-size: 1.15rem; }
+.mis-reservas ul { list-style: none; margin: 12px 0 0; padding: 0; }
+.reserva-guardada { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px; margin-bottom: 8px; border: 1px solid #e2e8f0; border-radius: 10px; }
+.reserva-guardada p { margin: 4px 0; }
+.reserva-guardada button { padding: 8px 10px; border: 1px solid #fecaca; border-radius: 8px; background: #fff1f2; cursor: pointer; }
+.reserva-guardada button:hover { background: #ffe4e6; }
 .tarjeta strong { color: #0f766e; }
 .mensaje { max-width: 520px; margin: 24px auto; padding: 12px; text-align: center; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; }
 .footer { text-align: center; color: #64748b; padding: 16px; }
